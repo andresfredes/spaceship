@@ -24,8 +24,30 @@ def main():
         for _ in range(settings.NUM_STARS)
     ]
 
+    square = pygame.Rect(50, 50, 50, 50)
+    clickables = [{"shape": square, "clicked": False}]
+
     while running:
         for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    for item in clickables:
+                        if item["shape"].collidepoint(event.pos):
+                            item["clicked"] = True
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    for item in clickables:
+                        if item["clicked"]:
+                            item["clicked"] = False
+            if event.type == pygame.MOUSEMOTION:
+                for item in clickables:
+                    if item["clicked"]:
+                        item["shape"].update(
+                            square.left + event.rel[0],
+                            square.top + event.rel[1],
+                            square.width,
+                            square.height
+                        )
             if event.type == pygame.QUIT:
                 running = False
         
@@ -37,6 +59,8 @@ def main():
             if star[0] < 0:
                 star[0] = settings.SCREEN_WIDTH
                 star[1] = randint(0, settings.SCREEN_HEIGHT)
+            
+        pygame.draw.rect(background, color=Colour.WHITE.value, rect=square)
 
         screen.blit(background, (0, 0))
         pygame.display.flip()
