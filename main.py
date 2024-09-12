@@ -4,6 +4,7 @@ import pygame
 
 from src.settings import settings
 from src.colours import Colour
+from src.card import Card, Hand
 
 
 def main():
@@ -24,33 +25,24 @@ def main():
         for _ in range(settings.NUM_STARS)
     ]
 
-    square = pygame.Rect(50, 50, 50, 50)
-    clickables = [{"shape": square, "clicked": False}]
+    card1 = Card([50, 50])
+    card2 = Card([150, 50])
+    card3 = Card([250, 50])
+    hand = Hand([card1, card2, card3])
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    for item in clickables:
-                        if item["shape"].collidepoint(event.pos):
-                            item["clicked"] = True
+                    hand.hold_card(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
-                    for item in clickables:
-                        if item["clicked"]:
-                            item["clicked"] = False
+                    hand.unhold_card()
             if event.type == pygame.MOUSEMOTION:
-                for item in clickables:
-                    if item["clicked"]:
-                        item["shape"].update(
-                            square.left + event.rel[0],
-                            square.top + event.rel[1],
-                            square.width,
-                            square.height
-                        )
+                hand.move_held_card(event.rel)
             if event.type == pygame.QUIT:
                 running = False
-        
+
         background.fill(Colour.BLACK.value)
 
         for star in stars:
@@ -59,8 +51,8 @@ def main():
             if star[0] < 0:
                 star[0] = settings.SCREEN_WIDTH
                 star[1] = randint(0, settings.SCREEN_HEIGHT)
-            
-        pygame.draw.rect(background, color=Colour.WHITE.value, rect=square)
+
+        hand.draw(background)
 
         screen.blit(background, (0, 0))
         pygame.display.flip()
