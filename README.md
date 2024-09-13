@@ -21,12 +21,13 @@ Spaceship battle themed deckbuilder
     - Consider mechanics from Artemis (science, navigation, engineering, medical, bridge, fighters, comms, escape pods, weapons, teleporters, storage/loading bay, brig, sleeping quarters)
 
 # TODO:
+- Event handling:
+    - pub/sub via global event handler?
 - Build card template:
     - Basic outline
     - Text
     - Cost
 - Create basic battle view:
-    - Mouse / cursor
     - Cards:
         - Library / discard
         - Hand

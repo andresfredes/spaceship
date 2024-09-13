@@ -43,13 +43,18 @@ class Hand:
         for card in self.cards:
             card.draw(surface)
 
+    def add(self, cards):
+        if isinstance(cards, list):
+            for card in cards:
+                self.cards.append(card)
+        else:
+            self.cards.append(cards)
+
 
 class Card:
     def __init__(self, pos=[50, 50]):
         self.mouse_held = False
         self._pos = pos
-        # flipped
-        # visible
         self._bounds = pygame.Rect(self._pos[0], self._pos[1], 50, 50)
         self._colour = Colour.WHITE.value
 
@@ -61,7 +66,7 @@ class Card:
             self._bounds.left + rel[0],
             self._bounds.top + rel[1],
             self._bounds.width,
-            self._bounds.height
+            self._bounds.height,
         )
 
     def draw(self, surface):
