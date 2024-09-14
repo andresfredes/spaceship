@@ -69,7 +69,7 @@ class Card:
         self._font = pygame.freetype.SysFont(
             pygame.freetype.get_default_font(), settings.FONT_SIZE
         )
-        self._surface = pygame.Surface((self._width, self._height))
+        self._surface = pygame.Surface((self._width, self._height)).convert()
         self._bounds = self._surface.get_rect()
         self.move((0, 0))
 

@@ -14,7 +14,9 @@ class GameLoop:
         self._event_handler = EventHandler()
         return self
 
-    def __exit__(self, *args):
+    def __exit__(self, exc_type=None, exc_val=None, tb=None):
+        if exc_type:
+            print(exc_val, tb)
         pygame.quit()
 
     def run(self):
