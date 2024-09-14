@@ -3,13 +3,39 @@ Spaceship battle themed deckbuilder
 
 ## Ideas:
 - Two alternating modes of play:
-    - Space map:
-        - Select path
-        - Build deck by reacting to events (e.g. alien attack, scavenge wreckage, navigate asteroid belt)
-        - Event types:
-            - Customise ship (general stats / buffs)
-            - Space event
-            - Space battle
+    - Ship view:
+        - Select path?
+        - Events?
+        - Assign crew members to their stations in the ship
+        - Stationed crew = cards during battle
+        - Crew have stats:
+            - Effectiveness at various stations
+            - Modifiers
+            - Special effects
+            - e.g. Stan is not good at weapons (-1), but great at shields (+1);
+                Amy is all-rounder with the ability to handle two neibouring bridge stations at once
+                Rob is a leader and improves the abilities of other crew in the room
+        - Stations:
+            - Bridge:
+                Captain's chair
+                Comms
+            - Weapons:
+                - Scttered around ship, individually manned
+            - Engineering:
+                - Shields?
+                - Energy system for actions?
+                - Resources
+            - Science:
+                - Info on enemy (shield type/vuln, intent)
+            - Medical:
+                - Crew damage?
+            - Crew quarters ?
+            - Brig:
+                - Convert beaten spaceships into additional crew?
+            - Flight deck:
+                - Fighters (Additional attacks)
+            - Transporters:
+                - Reassign crew?
     - Spaceship battle:
         - Turn based
         - Card selection to perform actions
@@ -21,12 +47,9 @@ Spaceship battle themed deckbuilder
     - Consider mechanics from Artemis (science, navigation, engineering, medical, bridge, fighters, comms, escape pods, weapons, teleporters, storage/loading bay, brig, sleeping quarters)
 
 # TODO:
-- Event handling:
-    - pub/sub via global event handler?
-- Build card template:
-    - Basic outline
-    - Text
-    - Cost
+- Create basic ship view:
+    - Ship cross-section (with clear bounds of each room)
+    - Crew allocation to each area
 - Create basic battle view:
     - Cards:
         - Library / discard

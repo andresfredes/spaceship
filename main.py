@@ -1,30 +1,20 @@
-import pygame
-
 from src.card import Card, Hand
-from src.event import EventHandler
-from src.render import Renderer
+from src.loop import GameLoop
+from src.state import state
 
 
 def main():
-    pygame.init()
+    with GameLoop() as loop:
 
-    # Temporary card examples
-    card1 = Card([50, 50])
-    card2 = Card([150, 50])
-    card3 = Card([250, 50])
+        # Set up initial game state
+        card1 = Card(pos=[350, 500], title="Stan", text="This is example text")
+        card2 = Card(pos=[550, 500], title="Amy", text="Some more text")
+        card3 = Card(pos=[750, 500], title="Rob", text="And another card text")
+        hand = Hand([card1, card2, card3])
+        state.hand = hand
 
-    # TODO State handling? global cache?
-    hand = Hand([card1, card2, card3])
-
-    event_handler = EventHandler(hand=hand)
-    renderer = Renderer(hand=hand)
-
-    running = True
-    while running:
-        running = event_handler.step()
-        renderer.render_frame()
-
-    pygame.quit()
+        # Run game
+        loop.run()
 
 
 if __name__ == "__main__":

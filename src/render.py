@@ -4,11 +4,11 @@ import pygame
 
 from src.colours import Colour
 from src.settings import settings
+from src.state import state
 
 
 class Renderer:
-    def __init__(self, hand):
-        self.hand = hand
+    def __init__(self):
         self.screen = pygame.display.set_mode(
             (settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT)
         )
@@ -29,7 +29,7 @@ class Renderer:
                 star[0] = settings.SCREEN_WIDTH
                 star[1] = randint(0, settings.SCREEN_HEIGHT)
 
-        self.hand.draw(self.background)
+        state.hand.draw(self.background)
 
         self.screen.blit(self.background, (0, 0))
         pygame.display.flip()
