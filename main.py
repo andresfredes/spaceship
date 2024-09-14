@@ -8,7 +8,7 @@ from src.render import Renderer
 def main():
     pygame.init()
 
-    # Temp card examples
+    # Temporary card examples
     card1 = Card([50, 50])
     card2 = Card([150, 50])
     card3 = Card([250, 50])
