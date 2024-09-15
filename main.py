@@ -14,6 +14,7 @@ def main():
         hand = Hand([card1, card2, card3])
         ship = Ship()
         state.hand = hand
+        state.ship = ship
 
         # Run game
         loop.run()

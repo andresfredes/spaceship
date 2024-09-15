@@ -29,6 +29,7 @@ class Renderer:
                 star[0] = settings.SCREEN_WIDTH
                 star[1] = randint(0, settings.SCREEN_HEIGHT)
 
+        state.ship.draw(self.background)
         state.hand.draw(self.background)
 
         self.screen.blit(self.background, (0, 0))

@@ -16,7 +16,7 @@ class Settings:
     LEFT_CLICK = 1
 
     ROOT_DIR = Path(os.path.dirname(os.path.abspath(__file__))).parent
-    ASSETS_DIR = 
+    ASSETS_DIR = Path(ROOT_DIR / "assets")
 
 
 settings = Settings()
