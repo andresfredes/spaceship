@@ -1,7 +1,7 @@
 from src.card import Card, Hand
 from src.loop import GameLoop
+from src.ship import Ship
 from src.state import state
-from src.view import Ship
 
 
 def main():

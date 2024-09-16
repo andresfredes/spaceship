@@ -5,6 +5,7 @@ import pygame
 from src.colours import Colour
 from src.settings import settings
 from src.state import state
+from src.view import View
 
 
 class Renderer:
@@ -29,8 +30,15 @@ class Renderer:
                 star[0] = settings.SCREEN_WIDTH
                 star[1] = randint(0, settings.SCREEN_HEIGHT)
 
-        state.ship.draw(self.background)
-        state.hand.draw(self.background)
+        match state.view:
+            case View.MENU:
+                pass
+            case View.SHIP:
+                state.ship.draw(self.background)
+            case View.BATTLE:
+                state.hand.draw(self.background)
+            case _:
+                pass
 
         self.screen.blit(self.background, (0, 0))
         pygame.display.flip()
