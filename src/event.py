@@ -15,6 +15,7 @@ class EventHandler:
                     state.hand.hold_card(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == settings.LEFT_CLICK:
+                    state.buttons.click(event.pos)
                     state.hand.unhold_card()
             if event.type == pygame.MOUSEMOTION:
                 state.hand.move_held_card(event.rel)

@@ -18,5 +18,8 @@ class Settings:
     ROOT_DIR = Path(os.path.dirname(os.path.abspath(__file__))).parent
     ASSETS_DIR = Path(ROOT_DIR / "assets")
 
+    BUTTON_WIDTH = 200
+    BUTTON_HEIGHT = 100
+
 
 settings = Settings()

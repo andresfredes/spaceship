@@ -47,6 +47,9 @@ Spaceship battle themed deckbuilder
     - Consider mechanics from Artemis (science, navigation, engineering, medical, bridge, fighters, comms, escape pods, weapons, teleporters, storage/loading bay, brig, sleeping quarters)
 
 # TODO:
+- Check that items are currently being rendered!
+    - Capture boilerplate for draw, collidepoint, etc
+    - How to move things in and out of current view for both events and rendering?
 - Create basic ship view:
     - Ship cross-section (with clear bounds of each room)
     - Crew allocation to each area

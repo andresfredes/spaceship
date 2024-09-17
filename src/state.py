@@ -11,8 +11,17 @@ class State:
         # ship
         self.crew = None
 
+        # menu
+        self.buttons = None
+
         # general
-        self.view = View.SHIP
+        self.view = View.MENU
+
+    def view_setter(self, view):
+        def inner():
+            self.view = view
+
+        return inner
 
 
 state = State()
