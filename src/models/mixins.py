@@ -9,7 +9,13 @@ class DrawMixin:
 
 class MouseMixin:
     def __init_subclass__(self):
-        if not hasattr(self, "_bounds") or not hasattr(self, "_pos"):
+        if (
+            not hasattr(self, "_bounds")
+            or not hasattr(self, "_pos")
+            or not hasattr(self, "hoverable")
+            or not hasattr(self, "clickable")
+            or not hasattr(self, "moveable")
+        ):
             raise NotImplementedError("MouseMixin subclass missing attribute(s)")
 
     def collidepoint(self, pos):

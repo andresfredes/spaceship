@@ -2,7 +2,7 @@ import pygame
 import pygame.freetype
 
 from src.colours import Colour
-from src.models.mixins import DrawMixin
+from src.models.mixins import DrawMixin, MouseMixin
 from src.settings import settings
 
 
@@ -54,9 +54,12 @@ class Hand:
             self._cards.append(cards)
 
 
-class Card(DrawMixin):
+class Card(DrawMixin, MouseMixin):
     _pos = None
     _surface = None
+    hoverable = True
+    clickable = True
+    movable = True
 
     def __init__(self, pos=[0, 0], title="", text=""):
         self.mouse_held = False
@@ -89,16 +92,4 @@ class Card(DrawMixin):
             dest=(10, 100),
             text=self._text,
             fgcolor=self._text_colour,
-        )
-
-    def collidepoint(self, pos):
-        return self._bounds.collidepoint(pos)
-
-    def move(self, rel):
-        self._pos = (self._pos[0] + rel[0], self._pos[1] + rel[1])
-        self._bounds.update(
-            self._pos[0],
-            self._pos[1],
-            self._bounds.width,
-            self._bounds.height,
         )
