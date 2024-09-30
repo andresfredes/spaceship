@@ -7,3 +7,6 @@ __pycache__/
 # Asset edit files
 *.xcf
 
+# Design and development docs
+dev_docs/*
+!design_doc.md

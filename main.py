@@ -1,7 +1,7 @@
-from src.button import Button
-from src.card import Card, Hand
 from src.loop import GameLoop
-from src.ship import Ship
+from src.models.button import Button
+from src.models.card import Card, Hand
+from src.models.ship import Ship
 from src.state import state
 from src.view import View
 
@@ -20,13 +20,13 @@ def main():
         ship = Ship()
         state.ship = ship
 
-        buttons = [
-            Button(pos=[350, 200], text="SHIP", action=state.view_setter(View.SHIP)),
-            Button(
-                pos=[750, 200], text="BATTLE", action=state.view_setter(View.BATTLE)
-            ),
-        ]
-        state.buttons = buttons
+        # buttons = [
+        #     Button(pos=[350, 200], text="SHIP", action=state.view_setter(View.SHIP)),
+        #     Button(
+        #         pos=[750, 200], text="BATTLE", action=state.view_setter(View.BATTLE)
+        #     ),
+        # ]
+        # state.buttons = buttons
 
         # Run game
         loop.run()

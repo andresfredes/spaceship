@@ -2,6 +2,7 @@ import pygame
 import pygame.freetype
 
 from src.colours import Colour
+from src.models.mixins import DrawMixin
 from src.settings import settings
 
 
@@ -53,7 +54,10 @@ class Hand:
             self._cards.append(cards)
 
 
-class Card:
+class Card(DrawMixin):
+    _pos = None
+    _surface = None
+
     def __init__(self, pos=[0, 0], title="", text=""):
         self.mouse_held = False
 
@@ -98,6 +102,3 @@ class Card:
             self._bounds.width,
             self._bounds.height,
         )
-
-    def draw(self, surface):
-        surface.blit(self._surface, self._pos)

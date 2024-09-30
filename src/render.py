@@ -32,7 +32,8 @@ class Renderer:
 
         match state.view:
             case View.MENU:
-                state.buttons.draw(self.background)
+                # state.buttons.draw(self.background)
+                pass
             case View.SHIP:
                 state.ship.draw(self.background)
             case View.BATTLE:

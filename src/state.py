@@ -15,7 +15,7 @@ class State:
         self.buttons = None
 
         # general
-        self.view = View.MENU
+        self.view = View.BATTLE
 
     def view_setter(self, view):
         def inner():
