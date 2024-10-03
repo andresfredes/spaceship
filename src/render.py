@@ -3,6 +3,7 @@ from random import randint
 import pygame
 
 from src.colours import Colour
+from src.models.components import DrawMixin
 from src.settings import settings
 from src.state import state
 from src.view import View
@@ -32,12 +33,13 @@ class Renderer:
 
         match state.view:
             case View.MENU:
-                # state.buttons.draw(self.background)
                 pass
             case View.SHIP:
                 state.ship.draw(self.background)
             case View.BATTLE:
-                state.hand.draw(self.background)
+                for obj in state.objects:
+                    if isinstance(obj, DrawMixin):
+                        obj.draw(self.background)
             case _:
                 pass
 

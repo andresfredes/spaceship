@@ -2,68 +2,12 @@ import pygame
 import pygame.freetype
 
 from src.colours import Colour
-from src.models.mixins import DrawMixin, MouseMixin
+from src.models.components import BaseObject, DrawMixin, MouseMixin
 from src.settings import settings
 
 
-class Deck:
-    def __init__(self):
-        self._cards = []
-
-
-class Discard:
-    def __init__(self):
-        self._cards = []
-
-
-class Hand:
-    def __init__(self, cards=[]):
-        self._cards = cards
-        self.held_card_index = None
-
-    def __iter__(self):
-        for card in self._cards:
-            yield card
-
-    def hold_card(self, pos):
-        for i, card in enumerate(self._cards):
-            if card.collidepoint(pos):
-                card.mouse_held = True
-                self.held_card_index = i
-
-    def unhold_card(self):
-        if self.held_card_index is None:
-            return
-        self._cards[self.held_card_index].mouse_held = False
-        self.held_card_index = None
-
-    def move_held_card(self, rel):
-        if self.held_card_index is None:
-            return
-        self._cards[self.held_card_index].move(rel)
-
-    def draw(self, surface):
-        for card in self._cards:
-            card.draw(surface)
-
-    def add(self, cards):
-        if isinstance(cards, list):
-            for card in cards:
-                self._cards.append(card)
-        else:
-            self._cards.append(cards)
-
-
-class Card(DrawMixin, MouseMixin):
-    _pos = None
-    _surface = None
-    hoverable = True
-    clickable = True
-    movable = True
-
+class Card(BaseObject, DrawMixin, MouseMixin):
     def __init__(self, pos=[0, 0], title="", text=""):
-        self.mouse_held = False
-
         self._pos = pos
         self._title = title
         self._text = text
@@ -78,7 +22,7 @@ class Card(DrawMixin, MouseMixin):
         )
         self._surface = pygame.Surface((self._width, self._height)).convert()
         self._bounds = self._surface.get_rect()
-        self.move((0, 0))
+        self.mouse_move((0, 0), init_override=True)
 
         self._surface.fill(self._colour)
         self._font.render_to(
