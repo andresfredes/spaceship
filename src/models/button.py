@@ -1,7 +1,7 @@
 from collections.abc import Callable
 
-import pygame
-import pygame.freetype
+from pygame.freetype import SysFont, get_default_font
+from pygame.surface import Surface
 
 from src.colours import Colour
 from src.models.components import DrawMixin, MouseMixin
@@ -49,10 +49,8 @@ class Button(DrawMixin, MouseMixin):
         self._colour = Colour.WHITE.value
         self._text_colour = Colour.BLACK.value
 
-        self._font = pygame.freetype.SysFont(
-            pygame.freetype.get_default_font(), settings.FONT_SIZE
-        )
-        self._surface = pygame.Surface((self._width, self._height)).convert()
+        self._font = SysFont(get_default_font(), settings.FONT_SIZE)
+        self._surface = Surface((self._width, self._height)).convert()
         self._bounds = self._bounds = self._surface.get_rect()
 
         self._surface.fill(self._colour)

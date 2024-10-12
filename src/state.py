@@ -27,5 +27,10 @@ class State:
         # ship
         self.ship: list = []
 
+    def get_current_iter(self):
+        for collection in self.current:
+            for item in collection:
+                yield item
+
 
 state = State()

@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from src.models.types import Position
+
 
 class DrawMixin(ABC):
     @property
@@ -51,7 +53,7 @@ class MouseMixin(ABC):
 class MouseMoveMixin(ABC):
     @property
     @abstractmethod
-    def pos(self) -> tuple: ...
+    def pos(self) -> Position: ...
 
     @pos.setter
     @abstractmethod

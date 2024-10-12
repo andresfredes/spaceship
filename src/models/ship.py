@@ -1,6 +1,7 @@
 from pathlib import Path
 
-import pygame
+from pygame.image import load
+from pygame.surface import Surface
 
 from src.models.components import DrawMixin
 from src.models.types import Position
@@ -9,7 +10,7 @@ from src.settings import settings
 
 class Ship(DrawMixin):
     @property
-    def surface(self):
+    def surface(self) -> Surface:
         return self._surface
 
     @property
@@ -19,4 +20,4 @@ class Ship(DrawMixin):
     def __init__(self):
         self._pos: Position = [200, 50]
         self._ship_filename = Path(settings.ASSETS_DIR / "ship" / "ship_test.png")
-        self._surface = pygame.image.load(self._ship_filename)
+        self._surface = load(self._ship_filename)
