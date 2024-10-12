@@ -1,9 +1,9 @@
-from enum import Enum
 from random import shuffle
 
 from src.models.button import Button
 from src.models.card import Card
 from src.models.ship import Ship
+from src.models.types import Enum
 from src.state import state
 
 

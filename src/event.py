@@ -1,10 +1,9 @@
-from enum import Enum
-
 from pygame import MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION, QUIT
 from pygame.event import Event
 from pygame.event import get as get_events
 
 from src.models.components import MouseMixin, MouseMoveMixin
+from src.models.types import Enum
 from src.state import state
 
 
@@ -24,13 +23,13 @@ class EventHandler:
     def step(self):
         for event in get_events():
             match event.type:
-                case EventType.QUIT:
+                case EventType.QUIT.value:
                     return False
-                case EventType.MOUSEBUTTONDOWN:
+                case EventType.MOUSEBUTTONDOWN.value:
                     self.click_down(event)
-                case EventType.MOUSEBUTTONUP:
+                case EventType.MOUSEBUTTONUP.value:
                     self.click_up(event)
-                case EventType.MOUSEMOTION:
+                case EventType.MOUSEMOTION.value:
                     self.motion(event)
                 case _:
                     continue
@@ -38,7 +37,7 @@ class EventHandler:
 
     def click_down(event: Event):
         match event.button:
-            case MouseButton.LEFT:
+            case MouseButton.LEFT.value:
                 for item in state.get_current_iter():
                     if not isinstance(item, MouseMixin):
                         continue
@@ -46,7 +45,7 @@ class EventHandler:
 
     def click_up(event: Event):
         match event.button:
-            case MouseButton.LEFT:
+            case MouseButton.LEFT.value:
                 for item in state.get_current_iter():
                     if not isinstance(item, MouseMixin):
                         continue

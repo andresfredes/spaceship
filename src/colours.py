@@ -1,4 +1,4 @@
-from enum import Enum
+from src.models.types import Enum
 
 
 class Colour(Enum):

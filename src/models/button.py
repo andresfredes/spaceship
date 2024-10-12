@@ -39,7 +39,6 @@ class Button(DrawMixin, MouseMixin):
     def __init__(
         self, pos: Position = [0, 0], text: str = "", action: Callable | None = None
     ):
-        # TODO: placeholder - will eventually be an image
         self._pos = pos
         self._text: str = text
         self._action = action
