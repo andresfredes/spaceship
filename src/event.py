@@ -2,8 +2,8 @@ from pygame import MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION, QUIT
 from pygame.event import Event
 from pygame.event import get as get_events
 
+from src.enums import Enum
 from src.models.components import MouseMixin, MouseMoveMixin
-from src.models.types import Enum
 from src.state import state
 
 

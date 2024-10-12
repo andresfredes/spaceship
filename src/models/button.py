@@ -3,10 +3,10 @@ from collections.abc import Callable
 from pygame.freetype import SysFont, get_default_font
 from pygame.surface import Surface
 
-from src.colours import Colour
+from src.enums import Colour
 from src.models.components import DrawMixin, MouseMixin
-from src.models.types import Position
 from src.settings import settings
+from src.type import Position
 
 
 class Menu:

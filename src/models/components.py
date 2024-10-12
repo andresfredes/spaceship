@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.models.types import Position
+from src.type import Position
 
 
 class DrawMixin(ABC):
