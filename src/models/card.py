@@ -1,8 +1,9 @@
 from pygame.freetype import SysFont, get_default_font
+from pygame.rect import Rect
 from pygame.surface import Surface
 
 from src.enums import Colour
-from src.models.components import DrawMixin, MouseMixin, MouseMoveMixin
+from src.models.mixin import DrawMixin, MouseMixin, MouseMoveMixin
 from src.settings import settings
 from src.type import Position
 
@@ -13,7 +14,7 @@ class Card(DrawMixin, MouseMixin, MouseMoveMixin):
         return self._surface
 
     @property
-    def bounds(self):
+    def bounds(self) -> Rect:
         return self._bounds
 
     @property
@@ -36,7 +37,7 @@ class Card(DrawMixin, MouseMixin, MouseMoveMixin):
 
         self._font = SysFont(get_default_font(), settings.FONT_SIZE)
         self._surface: Surface = Surface((self._width, self._height)).convert()
-        self._bounds = self._surface.get_rect()
+        self._bounds: Rect = self._surface.get_rect()
         self.mouse_move((0, 0), init_override=True)
 
         self._surface.fill(self._colour)
@@ -52,3 +53,6 @@ class Card(DrawMixin, MouseMixin, MouseMoveMixin):
             text=self._text,
             fgcolor=self._text_colour,
         )
+
+    def __repr__(self):
+        return f"{self.__class__.__name__} ({self._title})"

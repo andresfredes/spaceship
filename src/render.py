@@ -6,7 +6,7 @@ from pygame.surface import Surface
 from pygame.time import Clock
 
 from src.enums import Colour
-from src.models.components import DrawMixin
+from src.models.mixin import DrawMixin
 from src.settings import settings
 from src.state import state
 

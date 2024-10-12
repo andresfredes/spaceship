@@ -1,4 +1,5 @@
 from enum import Enum as BaseEnum
+from enum import auto
 
 
 class Enum(BaseEnum):
@@ -11,3 +12,9 @@ class Colour(Enum):
     BLACK = (0, 0, 0)
     BLUE = (0, 0, 255)
     RED = (255, 0, 0)
+
+
+class View(Enum):
+    MENU = auto()
+    BATTLE = auto()
+    SHIP = auto()

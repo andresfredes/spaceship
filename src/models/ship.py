@@ -3,7 +3,7 @@ from pathlib import Path
 from pygame.image import load
 from pygame.surface import Surface
 
-from src.models.components import DrawMixin
+from src.models.mixin import DrawMixin
 from src.settings import settings
 from src.type import Position
 
