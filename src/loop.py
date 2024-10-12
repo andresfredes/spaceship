@@ -1,6 +1,7 @@
 import pygame
 
 from src.event import EventHandler
+from src.logic import start_game
 from src.render import Renderer
 
 
@@ -12,6 +13,7 @@ class GameLoop:
         pygame.init()
         self._renderer = Renderer()
         self._event_handler = EventHandler()
+        start_game()
         return self
 
     def __exit__(self, exc_type=None, exc_val=None, tb=None):

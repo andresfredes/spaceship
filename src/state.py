@@ -1,25 +1,31 @@
-from src.models.components import BaseObject
-from src.view import View
+from random import shuffle
+
+from src.models.button import Button
+from src.models.card import Card
+
+
+def reshuffle(deck: list[Card], discard: list[Card]) -> list[Card]:
+    shuffled = [*deck, *discard]
+    return shuffle(shuffled)
 
 
 class State:
     def __init__(self):
-        self.objects: list[BaseObject] = []
+        self.cards: list[Card] = []
 
         # general
-        self.view = View.BATTLE
+        self.current: list[list] = []
 
-    def view_setter(self, view):
-        def inner():
-            self.view = view
+        # menu
+        self.buttons: list[Button] = []
 
-        return inner
+        # battle
+        self.deck: list[Card] = []
+        self.discard: list[Card] = []
+        self.hand: list[Card] = []
 
-    def add(self, object):
-        self.objects.append(object)
-
-    def remove(self, object):
-        self.objects.remove(object)
+        # ship
+        self.ship: list = []
 
 
 state = State()

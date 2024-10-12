@@ -6,7 +6,6 @@ from src.colours import Colour
 from src.models.components import DrawMixin
 from src.settings import settings
 from src.state import state
-from src.view import View
 
 
 class Renderer:
@@ -31,17 +30,11 @@ class Renderer:
                 star[0] = settings.SCREEN_WIDTH
                 star[1] = randint(0, settings.SCREEN_HEIGHT)
 
-        match state.view:
-            case View.MENU:
-                pass
-            case View.SHIP:
-                state.ship.draw(self.background)
-            case View.BATTLE:
-                for obj in state.objects:
-                    if isinstance(obj, DrawMixin):
-                        obj.draw(self.background)
-            case _:
-                pass
+        for collection in state.current:
+            for item in collection:
+                if not isinstance(item, DrawMixin):
+                    continue
+                item.draw(self.background)
 
         self.screen.blit(self.background, (0, 0))
         pygame.display.flip()

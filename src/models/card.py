@@ -2,12 +2,29 @@ import pygame
 import pygame.freetype
 
 from src.colours import Colour
-from src.models.components import BaseObject, DrawMixin, MouseMixin
+from src.models.components import DrawMixin, MouseMixin, MouseMoveMixin
+from src.models.types import Position
 from src.settings import settings
 
 
-class Card(BaseObject, DrawMixin, MouseMixin):
-    def __init__(self, pos=[0, 0], title="", text=""):
+class Card(DrawMixin, MouseMixin, MouseMoveMixin):
+    @property
+    def surface(self):
+        return self._surface
+
+    @property
+    def bounds(self):
+        return self._bounds
+
+    @property
+    def pos(self) -> Position:
+        return self._pos
+
+    @pos.setter
+    def pos(self, val):
+        self._pos = val
+
+    def __init__(self, pos: Position = [0, 0], title: str = "", text: str = ""):
         self._pos = pos
         self._title = title
         self._text = text

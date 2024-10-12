@@ -3,33 +3,16 @@ Spaceship battle themed deckbuilder
 
 
 # TODO:
-- Extract repeating code for game objects into mixins:
-    - draw
-        - image
-        - position
-        - size
-        - fill
-        - collision
-    - mouse_click
-    - mouse_move
-        - hold
-        - move (while held)
-        - unhold
-    - ? include_text
-        - font
-        - fill
-        - rel_position
-        - ? title
-    - event(s)
-        - action(s)
-- Generalise containers and game objects
-- Check that items are currently being rendered!
-    - Capture boilerplate for draw, collidepoint, etc
-    - How to move things in and out of current view for both events and rendering?
-- Create basic ship view:
-    - Ship cross-section (with clear bounds of each room)
-    - Crew allocation to each area
+- Basic menu
+    - change colour on hover
+    - change colour on click down
+    - revert colour on click up
+    - action on click up
 - Create basic battle view:
+    - functions:
+        - draw (and display) hand
+        - discard on use
+        - move cards in hand
     - Cards:
         - Library / discard
         - Hand
@@ -41,3 +24,6 @@ Spaceship battle themed deckbuilder
         - Intention?
     - Basic effects:
         - Targeting
+- Create basic ship view:
+    - Ship cross-section (with clear bounds of each room)
+    - Crew allocation to each area
