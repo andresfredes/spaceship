@@ -29,21 +29,18 @@ class MouseMixin(ABC):
     def click_down(self, pos: Position) -> None:
         if not self.bounds.collidepoint(pos):
             return
-        print("click_down")
         self._mouse_held = True
         self.on_mouse_down(pos)
 
     def click_up(self, pos: Position) -> None:
         if not self._mouse_held:
             return
-        print("click_up")
         self._mouse_held = False
         self.on_mouse_up(pos)
 
     def hover(self, pos: Position) -> None:
         if not self.bounds.collidepoint(pos):
             return
-        print(f"hovering... ({self})")
         self.on_hover(pos)
 
     def on_mouse_down(self, pos: Position) -> None:
@@ -69,8 +66,8 @@ class MouseMoveMixin(ABC):
     @abstractmethod
     def bounds(self) -> Rect: ...
 
-    def mouse_move(self, rel: Position, init_override: bool = False):
-        if not self._mouse_held and not init_override:
+    def mouse_move(self, rel: Position):
+        if not self._mouse_held:
             return
         self.pos = (self.pos[0] + rel[0], self.pos[1] + rel[1])
         self.bounds.update(
@@ -80,3 +77,8 @@ class MouseMoveMixin(ABC):
 
     def on_move(self, rel: Position):
         pass
+
+
+def set_bounds(bounds: Rect, pos: Position) -> Rect:
+    bounds.update(pos[0], pos[1], bounds.width, bounds.height)
+    return bounds

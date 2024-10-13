@@ -5,7 +5,7 @@ from pygame.rect import Rect
 from pygame.surface import Surface
 
 from src.enums import Colour
-from src.models.mixin import DrawMixin, MouseMixin
+from src.models.mixin import DrawMixin, MouseMixin, set_bounds
 from src.settings import settings
 from src.type import Position
 
@@ -37,7 +37,7 @@ class Button(DrawMixin, MouseMixin):
 
         self._font = SysFont(get_default_font(), settings.FONT_SIZE)
         self._surface: Surface = Surface((self._width, self._height)).convert()
-        self._bounds: Rect = self._surface.get_rect()
+        self._bounds: Rect = set_bounds(bounds=self._surface.get_rect(), pos=self._pos)
 
         self._surface.fill(self._colour)
         self._font.render_to(
@@ -48,15 +48,13 @@ class Button(DrawMixin, MouseMixin):
         )
 
     def on_hover(self, _) -> None:
-        print("hover")
-        self._colour = Colour.RED.value
+        pass
 
     def on_mouse_down(self, _) -> None:
-        print("down")
         self._colour = Colour.BLUE.value
+        self._surface.fill(self._colour)
 
     def on_mouse_up(self, _) -> None:
-        print("up")
         self._colour = Colour.WHITE.value
         if self._action is not None:
             self._action()
