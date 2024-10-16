@@ -21,6 +21,7 @@ class DrawMixin(ABC):
 
 class MouseMixin(ABC):
     _mouse_held = False
+    _hovering = False
 
     @property
     @abstractmethod
@@ -40,7 +41,11 @@ class MouseMixin(ABC):
 
     def hover(self, pos: Position) -> None:
         if not self.bounds.collidepoint(pos):
+            if self._hovering:
+                self._hovering = False
+                self.off_hover(pos)
             return
+        self._hovering = True
         self.on_hover(pos)
 
     def on_mouse_down(self, pos: Position) -> None:
@@ -50,6 +55,9 @@ class MouseMixin(ABC):
         pass
 
     def on_hover(self, pos: Position) -> None:
+        pass
+
+    def off_hover(self, pos: Position) -> None:
         pass
 
 

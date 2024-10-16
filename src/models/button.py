@@ -33,28 +33,32 @@ class Button(DrawMixin, MouseMixin):
         self._width: int = settings.BUTTON_WIDTH
         self._height: int = settings.BUTTON_HEIGHT
         self._colour: Colour = Colour.WHITE.value
+        self._hover_colour: Colour = Colour.BLUE.value
         self._text_colour: Colour = Colour.BLACK.value
-
+        self._text_pos: Position = (70, 40)
         self._font = SysFont(get_default_font(), settings.FONT_SIZE)
-        self._surface: Surface = Surface((self._width, self._height)).convert()
+        self.resurface()
         self._bounds: Rect = set_bounds(bounds=self._surface.get_rect(), pos=self._pos)
 
-        self._surface.fill(self._colour)
+    def resurface(self, /, colour=None) -> Surface:
+        self._surface = Surface((self._width, self._height)).convert()
+        self._surface.fill(self._colour if colour is None else colour)
         self._font.render_to(
             surf=self._surface,
-            dest=(70, 40),
+            dest=self._text_pos,
             text=self._text,
             fgcolor=self._text_colour,
         )
 
     def on_hover(self, _) -> None:
-        pass
+        self.resurface(colour=self._hover_colour)
+
+    def off_hover(self, _) -> None:
+        self.resurface(colour=self._colour)
 
     def on_mouse_down(self, _) -> None:
-        self._colour = Colour.BLUE.value
-        self._surface.fill(self._colour)
+        pass
 
     def on_mouse_up(self, _) -> None:
-        self._colour = Colour.WHITE.value
         if self._action is not None:
             self._action()

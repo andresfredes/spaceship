@@ -3,11 +3,6 @@ Spaceship battle themed deckbuilder
 
 
 # TODO:
-- Basic menu
-    - change colour on hover
-    - change colour on click down
-    - revert colour on click up
-    - action on click up
 - Create basic battle view:
     - functions:
         - draw (and display) hand
