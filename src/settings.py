@@ -11,6 +11,9 @@ class Settings:
     CARD_WIDTH = 150
     CARD_HEIGHT = 200
 
+    BATTLE_SHIP_WIDTH = 500
+    BATTLE_SHIP_HEIGHT = 400
+
     FONT_SIZE = 12
 
     ROOT_DIR = Path(os.path.dirname(os.path.abspath(__file__))).parent

@@ -25,23 +25,22 @@ class Card(DrawMixin, MouseMixin, MouseMoveMixin):
     def pos(self, val: Position):
         self._pos = val
 
-    def __init__(self, pos: Position = [0, 0], title: str = "", text: str = ""):
+    def __init__(self, pos: Position = (0, 0), title: str = "", text: str = ""):
         self._pos: Position = pos
-        self._title: str = title
-        self._title_pos: Position = (10, 10)
-        self._text: str = text
-        self._text_pos: Position = (10, 100)
 
         self._width: int = settings.CARD_WIDTH
         self._height: int = settings.CARD_HEIGHT
         self._colour: Colour = Colour.WHITE.value
-        self._text_colour: Colour = Colour.BLACK.value
 
+        self._title: str = title
+        self._title_pos: Position = (10, 10)
+        self._text: str = text
+        self._text_pos: Position = (10, 100)
+        self._text_colour: Colour = Colour.BLACK.value
         self._font = SysFont(get_default_font(), settings.FONT_SIZE)
+
         self.resurface()
         self._bounds: Rect = set_bounds(bounds=self._surface.get_rect(), pos=self._pos)
-
-        self._surface.fill(self._colour)
 
     def resurface(self, /, border_colour=None):
         self._surface: Surface = Surface((self._width, self._height)).convert()

@@ -3,6 +3,7 @@ from random import shuffle
 from src.enums import View
 from src.models.button import Button
 from src.models.card import Card
+from src.models.enemy import Enemy
 from src.models.ship import Ship
 from src.state import state
 
@@ -18,6 +19,10 @@ def start_game():
         Button(pos=[350, 200], text="SHIP", action=view_changer(View.SHIP)),
         Button(pos=[750, 200], text="BATTLE", action=view_changer(View.BATTLE)),
     ]
+    state.enemies = [
+        Enemy(pos=[700, 50], name="Enemy_1"),
+        Enemy(pos=[750, 50], name="Enemy_2"),
+    ]
     view_changer(View.MENU)()
 
 
@@ -31,7 +36,7 @@ def view_changer(view: View):
             case View.MENU:
                 state.current = [state.buttons]
             case View.BATTLE:
-                state.current = [state.cards]
+                state.current = [state.cards, [state.enemies[0]]]
             case View.SHIP:
                 state.current = [state.ship]
             case _:

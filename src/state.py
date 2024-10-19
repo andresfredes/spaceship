@@ -1,12 +1,6 @@
-from random import shuffle
-
 from src.models.button import Button
 from src.models.card import Card
-
-
-def reshuffle(deck: list[Card], discard: list[Card]) -> list[Card]:
-    shuffled = [*deck, *discard]
-    return shuffle(shuffled)
+from src.models.enemy import Enemy
 
 
 class State:
@@ -23,6 +17,7 @@ class State:
         self.deck: list[Card] = []
         self.discard: list[Card] = []
         self.hand: list[Card] = []
+        self.enemies: list[Enemy] = []
 
         # ship
         self.ship: list = []

@@ -4,6 +4,11 @@ Spaceship battle themed deckbuilder
 
 # TODO:
 - Create basic battle view:
+    - enemy:
+        - enemy state
+        - enemy sprite
+        - enemy actions
+        - turn handling
     - functions:
         - draw (and display) hand
         - discard on use
